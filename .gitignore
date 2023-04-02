@@ -1,3 +1,4 @@
 .DS_Store
 .idea/
 /DatabaseSP2/client/__pycache__
+/DatabaseSP2/client/.ipynb_checkpoints
