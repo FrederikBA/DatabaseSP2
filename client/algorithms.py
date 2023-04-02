@@ -44,6 +44,9 @@ def write_knn_graph():
     conn.query("CALL gds.knn.write('KNN-Games', { writeRelationshipType: 'SIMILAR', writeProperty: 'score', topK: 1, "
                "randomSeed: 42, concurrency: 1, nodeProperties: ['rating'] }) YIELD nodesCompared, "
                "relationshipsWritten")
+    
+def print_knn():
+    """ """
 
 
 # PageRank

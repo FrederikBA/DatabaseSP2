@@ -27,9 +27,4 @@ def csv_xD():
 def create_db():
     """ Then we populate the database with data using the following command. """
     conn = connect_neo4j()
-    conn.query("LOAD CSV WITH HEADERS FROM 'file:///games_stripped.csv' as row MERGE (g: Game{title: row.Title, "
-               "rating: row.Rating, publishers: split(row.Team, ','), genres: split(row.Genres, ','), reviews: split("
-               "row.Reviews, ',')}) WITH g MATCH (g) UNWIND g.publishers as pub MERGE (p: Publisher{name: pub}) MERGE "
-               "(g)-[r1: RELEASED_BY]-> (p) WITH g MATCH (g) UNWIND g.genres as gen MERGE (ge: Genre{name: gen}) "
-               "MERGE (g)-[r2: HAS_A]-> (ge) WITH g MATCH (g) UNWIND g.reviews as rev MERGE (re: Review{name: rev}) "
-               "MERGE (g)-[r3: HAS_A]-> (re)")
+    conn.query("LOAD CSV WITH HEADERS FROM 'file:///games_stripped.csv' as row MERGE (g: Game{title: row.Title, rating: toFloat(row.Rating), releaseDate: row.ReleaseDate, summary: row.Summary, publishers: split(row.Team, ','), genres: split(row.Genres, ','), numberOfReviews: toInteger(row.NumberOfReviews), reviews: split(row.Reviews, ',')}) WITH g MATCH (g) UNWIND g.publishers as pub MERGE (p: Publisher{name: pub}) MERGE (g)-[r1: RELEASED_BY]-> (p) WITH g MATCH (g) UNWIND g.genres as gen MERGE (ge: Genre{name: gen}) MERGE (g)-[r2: HAS_A]-> (ge) WITH g MATCH (g) UNWIND g.reviews as rev MERGE (re: Review{name: rev}) MERGE (g)-[r3: HAS_A]-> (re)")
