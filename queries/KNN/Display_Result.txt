@@ -1,0 +1,1 @@
+MATCH p=()-[r:SIMILAR]->() RETURN p LIMIT 10000

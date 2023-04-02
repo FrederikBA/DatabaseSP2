@@ -1,0 +1,9 @@
+CALL gds.knn.write('KNN-Games', {
+    writeRelationshipType: 'SIMILAR',
+    writeProperty: 'score',
+    topK: 1,
+    randomSeed: 42,
+    concurrency: 1,
+    nodeProperties: ['rating']
+})
+YIELD nodesCompared, relationshipsWritten

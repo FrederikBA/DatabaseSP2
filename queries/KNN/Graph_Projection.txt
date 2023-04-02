@@ -1,0 +1,10 @@
+//Creating Graph Projection
+CALL gds.graph.project(
+    'KNN-Games',
+    {
+        Game: {
+            properties: ['rating','numberOfReviews']
+        }
+    },
+    '*'
+);

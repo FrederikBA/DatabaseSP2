@@ -1,0 +1,8 @@
+//KNN-Game Memory-Estimation
+CALL gds.knn.write.estimate('KNN-Games', {
+    nodeProperties: ['rating'],
+    writeRelationshipType: 'SIMILAR',
+    writeProperty: 'score',
+    topK: 1
+})
+YIELD nodeCount, bytesMin, bytesMax, requiredMemory

@@ -1,0 +1,3 @@
+//Stats_Mode
+CALL gds.knn.stats('KNN-Games', {topK: 1, concurrency: 1, randomSeed: 42, nodeProperties: ['rating']})
+YIELD nodesCompared, similarityPairs
