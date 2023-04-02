@@ -63,16 +63,16 @@ def get_most_popular_genre():
     
 def degree_centrality_projection():
     conn = connect_neo4j()
-    conn.query("CALL gds.graph.project('DegreeCentrality',{Game: {},Genre: {} },'*');")
-        
+    conn.query("CALL gds.graph.project('DegreeCentrality', { Game: { }, Genre: { } }, '*');")
+    
 # The cost of running the algorithm using the estimate procedure.    
 def estimate_cpu_cost():
     conn = connect_neo4j()
-    conn.query("CALL gds.degree.write.estimate('DegreeCentrality', { writeProperty: 'degree' }) YIELD nodeCount, relationshipCount, bytesMin, bytesMax, requiredMemory")
+    return conn.query("CALL gds.degree.write.estimate('DegreeCentrality', { writeProperty: 'degree' }) YIELD nodeCount, relationshipCount, bytesMin, bytesMax, requiredMemory")
         
         
     
 # Calculate which node has the highest degree
 def calculate_highest_degree_centrality():
     conn = connect_neo4j()
-    conn.query("MATCH (g:Game) OPTIONAL MATCH (g)-[]->() WITH g, count(*) as degree RETURN g.title AS gameName, degree ORDER BY degree DESC")
+    return conn.query("MATCH (g:Game) OPTIONAL MATCH (g)-[]->() WITH g, count(*) as degree RETURN g.title AS gameName, degree ORDER BY degree DESC")
