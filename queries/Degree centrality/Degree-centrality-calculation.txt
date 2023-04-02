@@ -1,0 +1,3 @@
+//The cost of running the algorithm using the estimate procedure.
+CALL gds.degree.write.estimate('DegreeCentrality', { writeProperty: 'degree' })
+YIELD nodeCount, relationshipCount, bytesMin, bytesMax, requiredMemory
