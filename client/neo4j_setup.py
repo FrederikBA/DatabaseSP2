@@ -12,6 +12,9 @@ def prep_db():
     conn = connect_neo4j()
     conn.query("MATCH ()-[r]->() DELETE r")
     conn.query("MATCH (n) DETACH DELETE n")
+    conn.query("CALL gds.graph.drop('PageRankProjection') YIELD graphName;")
+    conn.query("CALL gds.graph.drop('KNN-Games') YIELD graphName;")
+    conn.query("CALL gds.graph.drop('DegreeCentrality') YIELD graphName;")
     print('Neo4j database was successfully purged of data')
 
 
