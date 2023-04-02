@@ -1,0 +1,11 @@
+//Creating Graph Projection
+CALL gds.graph.project(
+    'PageRankProjection',
+    {
+        Game: {
+        },
+        Genre: {
+        }
+    },
+    '*'
+);
