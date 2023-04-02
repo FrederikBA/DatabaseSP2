@@ -1,9 +1,9 @@
-from client import neo4j_conn
+from neo4j_conn import *
 
 
 def connect_neo4j():
     """ Constructing our Neo4j connection string """
-    return neo4j_conn.Neo4jConnection(uri="bolt://localhost:7687", user="neo4j", pwd="12345678")
+    return Neo4jConnection(uri="bolt://localhost:7687", user="neo4j", pwd="12345678")
 
 
 def prep_db():
@@ -21,7 +21,7 @@ def csv_xD():
     måske smartere og mindre opsætning for dem der skal review på peergrade. """
     print('smth')
 
-def populate_db():
+def create_db():
     """ Then we populate the database with data using the following command. """
     conn = connect_neo4j()
     conn.query("LOAD CSV WITH HEADERS FROM 'file:///games_stripped.csv' as row MERGE (g: Game{title: row.Title, "
