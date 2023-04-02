@@ -40,3 +40,11 @@ def write_knn_graph():
     conn.query("CALL gds.knn.write('KNN-Games', { writeRelationshipType: 'SIMILAR', writeProperty: 'score', topK: 1, "
                "randomSeed: 42, concurrency: 1, nodeProperties: ['rating'] }) YIELD nodesCompared, "
                "relationshipsWritten")
+
+# PageRank
+
+def page_rank_projection():
+    conn.query("CALL gds.graph.project('PageRankProjection',{ Game: {}, Genre: {} }'*');")
+
+def get_most_popular_genre():
+    conn.query("CALL gds.pageRank.stream('PageRankProjection') YIELD nodeId, score WITH gds.util.asNode(nodeId) as node, score WHERE node:Genre RETURN node.name as genre, score ORDER BY score DESC LIMIT 10;")
