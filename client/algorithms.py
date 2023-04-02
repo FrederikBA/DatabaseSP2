@@ -50,13 +50,14 @@ def write_knn_graph():
 
 def page_rank_projection():
     conn = connect_neo4j()
-    conn.query("CALL gds.graph.project('PageRankProjection',{ Game: {}, Genre: {} }'*');")
+    conn.query("CALL gds.graph.project('PageRankProjection', { Game: { }, Genre: { } }, '*');")
 
 
 def get_most_popular_genre():
     conn = connect_neo4j()
-    conn.query(
+    return conn.query(
         "CALL gds.pageRank.stream('PageRankProjection') YIELD nodeId, score WITH gds.util.asNode(nodeId) as node, score WHERE node:Genre RETURN node.name as genre, score ORDER BY score DESC LIMIT 10;")
+    
    
 # Degree centrality
     
