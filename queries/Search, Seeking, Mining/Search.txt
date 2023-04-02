@@ -1,0 +1,5 @@
+//(Searching) top 10 games most reviews
+MATCH (g:Game)
+RETURN g.title, g.reviews
+ORDER BY g.reviews DESC
+LIMIT 10

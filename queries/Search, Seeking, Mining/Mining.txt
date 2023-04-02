@@ -1,0 +1,6 @@
+//(Mining) Publishers with more than 10 games
+MATCH (g:Game)-[:RELEASED_BY]->(p:Publisher)
+WITH p, count(DISTINCT g) AS num_games
+WHERE num_games > 10
+RETURN p.name, num_games
+ORDER BY num_games DESC

@@ -1,0 +1,6 @@
+//(Seeking) Publishers avg rating based of all their games
+MATCH (p:Publisher)-[:RELEASED_BY]-(g:Game)
+WITH p, toFloat(g.rating) AS rating
+WITH p, AVG(rating) AS avg_rating
+RETURN p.name, avg_rating
+ORDER BY avg_rating DESC
